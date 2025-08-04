@@ -1,4 +1,4 @@
-FROM maven:3.6.3-jdk-11-slim as maven
+FROM maven:3.9.6-eclipse-temurin-17 as maven
 
 ADD pom.xml ./
 
@@ -8,7 +8,7 @@ ADD src ./src
 
 RUN mvn -T 1C clean install
 
-FROM openjdk:11-jre-slim
+FROM eclipse-temurin:17-jre
 
 RUN groupadd -r ironquest && useradd -r ironquest -g ironquest
 USER ironquest:ironquest

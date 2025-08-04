@@ -162,16 +162,16 @@
     </dependency>
   </dependencies>
   <properties>
-    <java.version>11</java.version>
-    <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-    <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
-    <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
-    <nl.jqno.equalsverifier.version>3.1.13</nl.jqno.equalsverifier.version>
-    <org.apache.commons.version>1.8</org.apache.commons.version>
+    <java.version>17</java.version>
+    <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
+    <maven-jar-plugin.version>3.3.0</maven-jar-plugin.version>
+    <maven-surefire-plugin.version>3.1.2</maven-surefire-plugin.version>
+    <nl.jqno.equalsverifier.version>3.15.3</nl.jqno.equalsverifier.version>
+    <org.apache.commons.version>1.10.0</org.apache.commons.version>
     <org.hamcrest.version>2.2</org.hamcrest.version>
-    <org.jacoco.version>0.8.6</org.jacoco.version>
-    <org.junit.jupiter.version>5.6.1</org.junit.jupiter.version>
-    <org.springframework.boot.version>2.2.6.RELEASE</org.springframework.boot.version>
+    <org.jacoco.version>0.8.11</org.jacoco.version>
+    <org.junit.jupiter.version>5.9.3</org.junit.jupiter.version>
+    <org.springframework.boot.version>3.2.5</org.springframework.boot.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 </project>
