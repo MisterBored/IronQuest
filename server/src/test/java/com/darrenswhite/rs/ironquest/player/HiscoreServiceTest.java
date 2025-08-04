@@ -66,5 +66,33 @@ class HiscoreServiceTest {
       assertThat(loadedSkills.get(Skill.INVENTION), is(80618654D));
       assertThat(loadedSkills.get(Skill.ARCHAEOLOGY), is(58376D));
     }
+
+    @Test
+    void shouldHandleShortCSVResponse() {
+      String url = Objects
+          .requireNonNull(getClass().getClassLoader().getResource("hiscores-short.csv"))
+          .toString();
+      HiscoreService service = new HiscoreService(url);
+
+      Map<Skill, Double> loadedSkills = service.load("user");
+
+      assertThat(loadedSkills, notNullValue());
+      assertThat(loadedSkills, aMapWithSize(2));
+      assertThat(loadedSkills.get(Skill.ATTACK), is(737627D));
+      assertThat(loadedSkills.get(Skill.DEFENCE), is(28782069D));
+    }
+
+    @Test
+    void shouldHandleMalformedCSVResponse() {
+      String url = Objects
+          .requireNonNull(getClass().getClassLoader().getResource("hiscores-malformed.csv"))
+          .toString();
+      HiscoreService service = new HiscoreService(url);
+
+      Map<Skill, Double> loadedSkills = service.load("user");
+
+      assertThat(loadedSkills, notNullValue());
+      assertThat(loadedSkills, aMapWithSize(0));
+    }
   }
 }
