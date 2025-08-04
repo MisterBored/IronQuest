@@ -131,9 +131,6 @@ function styleLoaders(extract) {
           options: {
             implementation: require('sass'),
             sourceMap: true,
-            sassOptions: {
-              fiber: require('fibers'),
-            },
           },
         },
       ],

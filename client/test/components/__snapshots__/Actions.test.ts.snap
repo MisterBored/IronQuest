@@ -12,6 +12,7 @@ exports[`Actions.vue should render component and match snapshot 1`] = `
                   transition="fade-transition"
                   closelabel="$vuetify.close"
                   dismissible="true"
+                  closeicon="$cancel"
                   icon
                   prominent="true"
                   type="error"
@@ -32,6 +33,7 @@ exports[`Actions.vue should render component and match snapshot 1`] = `
                       href="https://github.com/darrenswhite/ironquest/issues/new"
                       target="_blank"
                       type="button"
+                      rel="noopener noreferrer"
           >
             Submit issue
           </v-btn-stub>

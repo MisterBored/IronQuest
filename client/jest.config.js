@@ -12,7 +12,7 @@ module.exports = {
     'ts-jest': {
       babelConfig: false,
       diagnostics: false,
-      tsConfig: './tsconfig.json',
+      tsconfig: './tsconfig.json',
     },
     'vue-jest': {
       babelConfig: false,
@@ -23,11 +23,11 @@ module.exports = {
   moduleNameMapper: {
     '\\.(css|sass|scss)$': 'identity-obj-proxy',
   },
+  testEnvironment: 'jsdom',
   setupFiles: ['<rootDir>/jest.setup.ts'],
   snapshotSerializers: ['jest-serializer-html'],
   testMatch: ['<rootDir>/test/**/*.test.ts'],
   transform: {
-    '\\.(sass|scss)$': 'jest-css-modules',
     '^.+\\.(j|t)s$': 'ts-jest',
     '.*\\.(vue)$': 'vue-jest',
   },
