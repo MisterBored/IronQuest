@@ -18,7 +18,7 @@ describe('Actions.vue', () => {
   let store: Store<RootState>;
 
   beforeEach(() => {
-    store = new Vuex.Store({
+    store = new Store({
       state: {
         actions: {
           error: false,

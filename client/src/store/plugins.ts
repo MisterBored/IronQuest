@@ -1,9 +1,9 @@
-import VuexPersistence from 'vuex-persist';
+import VuexPersistencePlugin from 'vuex-persist';
 
 import {mutationsSharer} from './MutationsSharer';
 import {RootState} from './RootState';
 
-const vuexLocal = new VuexPersistence<RootState>({
+const vuexLocal = new VuexPersistencePlugin<RootState>({
   storage: window.localStorage,
   reducer: state => ({
     parameters: state.parameters,
