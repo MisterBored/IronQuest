@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import org.apache.logging.log4j.LogManager;
@@ -32,7 +33,7 @@ public class QuestRepository {
    */
   public QuestRepository(@Value("${quests.resource}") Resource questsResource,
       ObjectMapper objectMapper) throws IOException {
-    this.quests = load(questsResource, objectMapper);
+    this.quests = Collections.unmodifiableSet(load(questsResource, objectMapper));
   }
 
   public Set<Quest> getQuests() {

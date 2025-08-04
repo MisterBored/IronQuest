@@ -5,6 +5,7 @@ import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.darrenswhite.rs.ironquest.player.Skill;
 import com.darrenswhite.rs.ironquest.quest.requirement.CombatRequirement;
@@ -210,6 +211,14 @@ class QuestRepositoryTest {
           .collect(Collectors.toList());
 
       assertThat(quests, containsInAnyOrder(new QuestMatcher(questB), new QuestMatcher(questC)));
+    }
+
+    @Test
+    void shouldReturnUnmodifiableSet() {
+      Set<Quest> loadedQuests = minimalQuestRepository.getQuests();
+      Quest quest = loadedQuests.iterator().next();
+
+      assertThrows(UnsupportedOperationException.class, () -> loadedQuests.add(quest));
     }
 
     @ParameterizedTest
