@@ -2,10 +2,17 @@ package com.darrenswhite.rs.ironquest.controller;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyBoolean;
+import static org.mockito.ArgumentMatchers.anyMap;
+import static org.mockito.ArgumentMatchers.anySet;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.darrenswhite.rs.ironquest.dto.PathDTO;
 import com.darrenswhite.rs.ironquest.dto.PathFinderParametersDTO;
@@ -29,6 +36,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 class QuestControllerTest {
 
@@ -114,6 +123,23 @@ class QuestControllerTest {
       verify(pathFinderService).find(player, algorithm);
       verify(path).createDTO();
       assertThat(result, is(pathDTO));
+    }
+
+    @Test
+    void shouldReturnNotFoundWhenQuestNotFound() throws Exception {
+      String name = "username";
+      Player player = mock(Player.class);
+
+      when(playerService.createPlayer(anyString(), any(QuestAccessFilter.class),
+          any(QuestTypeFilter.class), anyBoolean(), anyBoolean(), anySet(), anyMap()))
+          .thenReturn(player);
+      when(pathFinderService.find(player, AlgorithmId.DEFAULT))
+          .thenThrow(new QuestNotFoundException("not found"));
+
+      MockMvc mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
+
+      mockMvc.perform(get("/quests/path").param("name", name))
+          .andExpect(status().isNotFound());
     }
   }
 }
